@@ -2,44 +2,27 @@ import sys
 import time
 
 def main(func, operationName):
-    while True:
-        try:
-            pocet = int(input("Zadejte kolik čísel chcete " + operationName + ": "))
-        except ValueError:
-            print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-            break
+    try:
+        pocet = int(input("Zadejte kolik čísel chcete " + operationName + ": "))
         if pocet <= 1:
             print("Nelze " + operationName + ". Opakujte akci znovu.\n")
-            break
         elif pocet == 2:
-            try:
-                a = float(input("Zadejte první číslo: "))
-                b = float(input("Zadejte druhé číslo: "))
-            except ValueError:
-                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                break
+            a = float(input("Zadejte první číslo: "))
+            b = float(input("Zadejte druhé číslo: "))
             print("Výsledek: ", func(a, b), "\n")
-            break
         else:
             i = 2
-            try:
-                a = float(input("Zadejte první číslo: "))
-            except ValueError:
-                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                break
+            a = float(input("Zadejte první číslo: "))
             c = a
-            try:
-                while i <= pocet:
-                    b = float(input("Zadejte další číslo: "))
-                    c = func(c, b)
-                    i = i + 1
-            except ValueError:
-                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                break
+            while i <= pocet:
+                b = float(input("Zadejte další číslo: "))
+                c = func(c, b)
+                i = i + 1
             print("Výsledek: ", c, "\n")
-            break
+    except ValueError:
+        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")     
 
-version = "1.2.1"
+version = "1.3"
 
 print("Kalkulačka")
 print("Verze: ", version, "\n")
@@ -75,100 +58,79 @@ try:
             case "4":
                 main(lambda a, b : a / b, "dělit")
             case "5":
-                while True:
-                    try:
-                        a = float(input("Zadejte číslo které chcete umocnit: "))
-                        b = int(input("Zadejte exponent: "))
-                    except ValueError:
-                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                        break
+                try:
+                    a = float(input("Zadejte číslo které chcete umocnit: "))
+                    b = int(input("Zadejte exponent: "))
                     print("Výsledek: ", a ** b, "\n")
-                    break
+                except ValueError:
+                    print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
             case "6":
-                while True:
-                    try:
-                        a = float(input("Zadejte číslo které chcete odmocnit: "))
-                        b = int(input("Zadejte exponent: "))
-                    except ValueError:
-                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                        break
+                try:
+                    a = float(input("Zadejte číslo které chcete odmocnit: "))
+                    b = int(input("Zadejte exponent: "))
                     print("Výsledek: ", a ** (1 / b), "\n")
-                    break
+                except ValueError:
+                    print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
             case "7":
-                while True:
-                    try:
-                        nasobilka = int(input("Zadejte násobilku kterou chcete vypsat: "))
-                        pocet = int(input("Zadejte počet čísel: "))
-                    except ValueError:
-                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                        break
+                try:
+                    nasobilka = int(input("Zadejte násobilku kterou chcete vypsat: "))
+                    pocet = int(input("Zadejte počet čísel: "))
                     i = 1
                     arrayNasobilka = []
                     while i <= pocet:
                         arrayNasobilka.append(i * nasobilka)
                         i = i + 1
                     print("Výpis násobilky: ", arrayNasobilka, "\n")
-                    break
+                except ValueError:
+                    print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
             case "8":
-                while True:
-                    try:
-                        a = int(input("Zadej číslo: "))
-                    except ValueError:
-                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                        break
+                try:
+                    a = int(input("Zadej číslo: "))
                     c = a
                     i = a - 1
                     while i >= 1:
                         c = c * i
                         i = i - 1
                     print("Výsledek: ", c, "\n")
-                    break
+                except ValueError:
+                    print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
             case "9":
-                while True:
-                    print("1. c² = a² + b²")
-                    print("2. a² = c² - b²")
-                    print("3. b² = c² - a²")
+                print("Zanechte jednu proměnnou prázdnou pro její vypočtení nebo vyplnit všechny pro ověření, jestli je trojúhelník pravoúhlý.")
+                a = input("Zadej a: ")
+                b = input("Zadej b: ")
+                c = input("Zadej c: ")
+                if a == "" and c != "" and b != "":
                     try:
-                        akce = int(input("Vyber akci: "))
+                        a = (float(c) ** 2 - float(b) ** 2) ** (1 / 2)
+                        print("a = ", a, "\n")
                     except ValueError:
                         print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                        break
-                    match akce:
-                        case 1:
-                            try:
-                                a = float(input("Zadej a: "))
-                                b = float(input("Zadej b: "))
-                            except ValueError:
-                                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                                break
-                            c = (a ** 2 + b ** 2) ** (1 / 2)
-                            print("c = ", c, "\n")
-                            break
-                        case 2:
-                            try:
-                                c = float(input("Zadej c: "))
-                                b = float(input("Zadej b? "))
-                            except ValueError:
-                                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                                break
-                            a = (c ** 2 - b ** 2) ** (1 / 2)
-                            print("a = ", a, "\n")
-                            break
-                        case 3:
-                            try:
-                                c = float(input("Zadej c: "))
-                                a = float(input("Zadej a: "))
-                            except ValueError:
-                                print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
-                                break
-                            b = (c ** 2 - a ** 2) ** (1 / 2)
-                            print("b = ", b, "\n")
-                            break
-                        case _:
-                            print("Neplatná operace\n")
-                            break
+                elif b == "" and c != "" and a != "":
+                    try:
+                        b = (float(c) ** 2 - float(a) ** 2) ** (1 / 2)
+                        print("b = ", b, "\n")
+                    except ValueError:
+                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
+                elif c == "" and a != "" and b != "":
+                    try:
+                        c = (float(a) ** 2 + float(b) ** 2) ** (1 / 2)
+                        print("c = ", c, "\n")
+                    except ValueError:
+                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
+                elif c != "" and b != "" and a != "":
+                    try:
+                        soucet = float(a) ** 2 + float(b) ** 2
+                        c2 = float(c) ** 2
+                        if c2 == soucet:
+                            print("Trojúhelník je pravoúhlý\n")
+                        else:
+                            print("Trojúhelník není pravoúhlý\n")
+                    except ValueError:
+                        print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
+                else:
+                    print("Nelze pracovat. Máte více jak jednu prázdnou.\n")
             case _:
                 print("Neplatná operace\n")
 except KeyboardInterrupt:
-    print("Vypínám...")
+    print("\nVypínám...")
     time.sleep(1)
