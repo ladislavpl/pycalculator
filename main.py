@@ -11,18 +11,16 @@ def main(func, operationName):
             b = float(input("Zadejte druhé číslo: "))
             print("Výsledek: ", func(a, b), "\n")
         else:
-            i = 2
             a = float(input("Zadejte první číslo: "))
             c = a
-            while i <= pocet:
+            for i in range(1, pocet):
                 b = float(input("Zadejte další číslo: "))
                 c = func(c, b)
-                i = i + 1
             print("Výsledek: ", c, "\n")
     except ValueError:
         print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")     
 
-version = "1.3"
+version = "1.3.1"
 
 print("Kalkulačka")
 print("Verze: ", version, "\n")
@@ -75,11 +73,9 @@ try:
                 try:
                     nasobilka = int(input("Zadejte násobilku kterou chcete vypsat: "))
                     pocet = int(input("Zadejte počet čísel: "))
-                    i = 1
                     arrayNasobilka = []
-                    while i <= pocet:
+                    for i in range(pocet):
                         arrayNasobilka.append(i * nasobilka)
-                        i = i + 1
                     print("Výpis násobilky: ", arrayNasobilka, "\n")
                 except ValueError:
                     print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
@@ -87,10 +83,8 @@ try:
                 try:
                     a = int(input("Zadej číslo: "))
                     c = a
-                    i = a - 1
-                    while i >= 1:
+                    for i in range(a - 1, 0, -1):
                         c = c * i
-                        i = i - 1
                     print("Výsledek: ", c, "\n")
                 except ValueError:
                     print("Zadali jste neplatnou hodnotu. Opakujte akci znovu.\n")
